@@ -8,13 +8,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa-solid fa-house-chimney" style="color: rgb(4, 63, 142);"></i> Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('peta') }}">Peta</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('peta') }}"><i class="fa-regular fa-map" style="color: rgb(4, 63, 142);"></i> Peta</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('table') }}">Tabel</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('table') }}"><i class="fa-solid fa-table" style="color: rgb(4, 63, 142);"></i> Tabel</a>
                     </li>
                 </ul>
             </div>
