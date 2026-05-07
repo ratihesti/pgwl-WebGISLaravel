@@ -118,6 +118,24 @@ class PointsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //mencari nama file gambar berdasarkan id point
+        $image = $this->points->find($id)->image;
+
+        //hapus file gambar dari storage/images
+        if ($image != null) {
+            // Cek apakah file gambar ada sebelum menghapus
+            if (file_exists('./storage/images/' . $image)) {
+                // Hapus file gambar
+                unlink('./storage/images/' . $image);
+            }
+        }
+
+        // Hapus data dari database
+        if (!$this->points->destroy($id)) {
+            return redirect()->route('peta')->with('error', 'Gagal menghapus data point.');
+        }
+
+        // Kembali ke halaman peta
+        return redirect()->route('peta')->with('success', 'Data point berhasil dihapus.');
     }
 }

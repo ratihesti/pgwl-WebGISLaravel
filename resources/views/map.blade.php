@@ -17,7 +17,6 @@
         body {
             font-family: Arial, sans-serif;
         }
-
         #map {
             height: 90vh;
             width: 100%;
@@ -256,14 +255,22 @@
 
             // onEachFeature
             onEachFeature: function(feature, layer) {
+                //route delete point
+                var routedelete = "{{ route('points.delete', ':id') }}";
+                routedelete = routedelete.replace(':id', feature.properties.id);
+
                 // variable popup content
                 var popup_content = "Nama: " + feature.properties.name + "<br>" +
                     "Deskripsi: " + feature.properties.description + "<br>" +
                     "Dibuat: " + feature.properties.created_at + "<br>" +
                     "Diperbarui: " + feature.properties.updated_at + "<br>" +
-                    "<img src='{{ asset('storage/images/') }}/" + feature.properties.image +
-                    "' alt='' class='img-thumbnail' width='300'>"
-                    ;
+                    "<img src='{{ asset('storage/images/') }}/" + feature.properties.image + "' alt='' class='img-thumbnail' width='300'>" +
+                    "<br><br>" +
+                    "<form action='" + routedelete + "' method='post'>" +
+                    '@csrf' + '@method("delete")' +
+                    "<button class='btn btn-sm btn-danger' title='Delete Point' onclick='return confirm(\"Apakah Anda yakin ingin menghapus point ini?\")'>" +
+                    "<i class='fa-solid fa-trash' style='color: rgb(255, 255, 255);'></i> Delete</button>" +
+                    "</form>";
                 layer.on({
                     click: function(e) {
                         points.bindPopup(popup_content);
@@ -283,15 +290,22 @@
 
             // onEachFeature
             onEachFeature: function(feature, layer) {
+                //route delete polyline
+                var routedelete = "{{ route('polylines.delete', ':id') }}";
+                routedelete = routedelete.replace(':id', feature.properties.id);
+
                 // variable popup content
                 var popup_content = "Nama: " + feature.properties.name + "<br>" +
                     "Deskripsi: " + feature.properties.description + "<br>" +
                     "Dibuat: " + feature.properties.created_at + "<br>" +
                     "Diperbarui: " + feature.properties.updated_at + "<br>" +
-                    "<img src='{{ asset('storage/images/') }}/" + feature.properties.image +
-                    "' alt='' class='img-thumbnail' width='300'>"
-                    ;
-
+                    "<img src='{{ asset('storage/images/') }}/" + feature.properties.image + "' alt='' class='img-thumbnail' width='300'>" +
+                    "<br><br>" +
+                    "<form action='" + routedelete + "' method='post'>" +
+                    '@csrf' + '@method("delete")' +
+                    "<button class='btn btn-sm btn-danger' title='Delete Polyline' onclick='return confirm(\"Apakah Anda yakin ingin menghapus polyline ini?\")'>" +
+                    "<i class='fa-solid fa-trash' style='color: rgb(255, 255, 255);'></i> Delete</button>" +
+                    "</form>";
                 layer.on({
                     click: function(e) {
                         polylines.bindPopup(popup_content);
@@ -311,15 +325,22 @@
 
             // onEachFeature
             onEachFeature: function(feature, layer) {
+                //route delete polygon
+                var routedelete = "{{ route('polygons.delete', ':id') }}";
+                routedelete = routedelete.replace(':id', feature.properties.id);
+
                 // variable popup content
                 var popup_content = "Nama: " + feature.properties.name + "<br>" +
                     "Deskripsi: " + feature.properties.description + "<br>" +
                     "Dibuat: " + feature.properties.created_at + "<br>" +
                     "Diperbarui: " + feature.properties.updated_at + "<br>" +
-                    "<img src='{{ asset('storage/images/') }}/" + feature.properties.image +
-                    "' alt='' class='img-thumbnail' width='300'>"
-                    ;
-
+                    "<img src='{{ asset('storage/images/') }}/" + feature.properties.image + "' alt='' class='img-thumbnail' width='300'>" +
+                    "<br><br>" +
+                    "<form action='" + routedelete + "' method='post'>" +
+                    '@csrf' + '@method("delete")' +
+                    "<button class='btn btn-sm btn-danger' title='Delete Polygon' onclick='return confirm(\"Apakah Anda yakin ingin menghapus polygon ini?\")'>" +
+                    "<i class='fa-solid fa-trash' style='color: rgb(255, 255, 255);'></i> Delete</button>" +
+                    "</form>";
                 layer.on({
                     click: function(e) {
                         polygons.bindPopup(popup_content);
